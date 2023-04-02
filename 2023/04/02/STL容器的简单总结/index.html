@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Hexo</title>
+  <title>STL容器的简单总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="STL(Standard Template Library)：容器、迭代器、算法、分配器、适配器、仿函数                                       顺序容器            关联容器           无序容器                                       容器          string          array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL容器的简单总结">
+<meta property="og:url" content="http://example.com/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="STL(Standard Template Library)：容器、迭代器、算法、分配器、适配器、仿函数                                       顺序容器            关联容器           无序容器                                       容器          string          array">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-02T04:49:10.000Z">
+<meta property="article:modified_time" content="2023-04-02T08:16:15.947Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,327 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-STL容器的简单总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      STL容器的简单总结
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
+
+        
+        <a href="/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
   	<time datetime="2023-04-02T04:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/">STL容器的简单总结</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>STL(Standard Template Library)：容器、迭代器、算法、分配器、适配器、仿函数</p>
+<table>
+    <tr>
+        <th></th> 
+          <th></th> 
+          <th colspan="7">顺序容器</th>   
+        <th colspan="2">关联容器</th>  
+        <th colspan="2">无序容器</th>                     
+   </tr>
+    <tr style="font-weight:bold">
+        <td>容器</td> 
+        <td>string</td> 
+        <td>array</td> 
+        <td>vector</td>
+        <td>deque</td> 
+        <td>stack</td> 
+        <td>queue</td> 
+        <td>list</td> 
+        <td>forward_list</td> 
+        <td>set/multiset</td>
+        <td>map/multimap</td> 
+        <td>unordered set</td> 
+        <td>unordered map</td> 
+   </tr>
+       <tr>
+        <td>特点</td> 
+        <td></td> 
+        <td>随机访问，连续存储，固定大小</td> 
+        <td>随机访问，连续存储，可向后扩充</td>
+        <td>分段连续存储，可向两端扩充</td> 
+          <td>先进后出</td> 
+        <td>先进先出</td>  
+        <td>双向链表</td> 
+        <td>单链表</td> 
+        <td>元素会在插入时自动被排序</td>
+        <td>元素会根据元素的key自动排序</td> 
+        <td></td> 
+        <td></td> 
+    </tr>
+    <tr>
+        <td>底层实现</td> 
+        <td></td> 
+        <td></td> 
+        <td>由array实现</td>
+        <td></td> 
+          <td colspan="2">由deque实现，因此可以看成是容器适配器</td> 
+        <td></td> 
+        <td>由list实现</td> 
+        <td colspan="2">由红黑树实现，它是一种平衡二叉树</td> 
+        <td colspan="2">由哈希表（拉链法）实现</td> 
+    </tr>
+    <tr>
+        <td>数据存取</td> 
+        <td>[];at()</td> 
+        <td></td> 
+        <td>[];<br>at();<br>front();<br>back()</td>
+        <td>[];<br>at();<br>front();<br>back()</td> 
+        <td>top()</td> 
+        <td>back();<br>front()</td> 
+        <td>back();<br>front()<br>不支持随机访问</td> 
+        <td></td> 
+        <td></td>
+        <td>map:[];<br>multimap:不能用[]</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>插入</td> 
+        <td>insert()</td> 
+        <td></td> 
+        <td>push_back();<br>insert()</td>
+        <td>push_back();<br>push_front();<br>insert()</td> 
+        <td>push()</td> 
+        <td>push()</td> 
+        <td>push_back();<br>push_front();<br>insert()</td> 
+        <td></td> 
+        <td>insert()</td>
+        <td>insert()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>删除</td> 
+        <td>erase()</td> 
+        <td></td> 
+        <td>pop_back();<br>erase();<br>clear()</td>
+        <td>pop_back();<br>pop_front();<br>erase();<br>clear()</td> 
+        <td>pop()</td> 
+        <td>pop()</td> 
+        <td>pop_back();<br>pop_front();<br>erase();<br>clear()</td> 
+        <td></td> 
+        <td>erase();<br>clear()</td>
+        <td>erase();<br>clear()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>构造函数</td> 
+        <td>无参；<br>有参；<br>拷贝；<br>(n,e) </td> 
+        <td></td> 
+        <td>无参；<br>[begin(),v.end())；<br>拷贝；<br>(n,e)</td>
+        <td>无参；<br>[begin(),v.end())；<br>拷贝；<br>(n,e)</td> 
+        <td>无参；<br>拷贝；</td> 
+        <td>无参；<br>拷贝；</td>
+        <td>无参；<br>[begin(),v.end())；<br>拷贝；<br>(n,e)</td>  
+        <td></td> 
+        <td>无参；<br>拷贝；</td>
+        <td>无参；<br>拷贝；</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>赋值</td> 
+        <td>=；assign</td> 
+        <td></td> 
+        <td>=；assign</td>
+        <td>=；assign</td> 
+        <td>=</td> 
+        <td>=</td> 
+        <td>=；assign</td> 
+        <td></td> 
+        <td>=</td>
+        <td>=</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>容量大小</td> 
+        <td>string</td> 
+        <td></td> 
+        <td>capacity();<br>size();<br>resize()</td>
+        <td>size();<br>resize()</td> 
+        <td></td> 
+        <td></td> 
+        <td>size();<br>resize()</td> 
+        <td></td> 
+        <td>size()</td>
+        <td>size()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>其他</td> 
+        <td>+=;<br>find();<br>compare();<br>substr()</td> 
+        <td></td> 
+        <td>swap();<br>reverse()</td>
+        <td></td> 
+        <td></td> 
+        <td></td> 
+        <td>swap();<br>reverse();<br>sort()</td> 
+        <td></td> 
+        <td>swap();<br>find();<br>count()</td>
+        <td>swap();<br>find();<br>count()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+</table>
 
-        <div class="article-info info-on-right">
-          
-          
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li>vector内存空间不足时，会申请一块新的内存空间（大小为原来的两倍），然后将原数据拷贝到新空间</li>
+<li>deque与vector区别：<ol>
+<li>vector对于头部的插入删除效率低，数据量越大，效率越低</li>
+<li>deque相对而言，对头部的插入删除速度会比vector快</li>
+<li>vector访问元素时的速度回避deque快，这和两者内部实现有关</li>
+</ol>
+</li>
+<li>对支持随机访问的迭代器的容器，都可以利用sort算法直接对其进行排序</li>
+<li>所有不支持随机访问迭代器的容器，不可以用标准算法。不支持随机访问迭代器的容器，内部会提供一些对应算法</li>
+<li>set和multiset区别：set不允许容器中有重复的元素，multiset允许容器中有重复的元素</li>
+<li>map和multimap区别：map不允许容器中有重复的key，multiset允许容器中有重复的key</li>
+<li>key和map都会根据元素或键值自动排序，其中自定义数据类型必须指定排序规则</li>
+</ul>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/04/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2023-04-01T03:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客搭建并部署至Github</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">Hexo博客搭建并部署至Github</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/04/01/hello-world/" class="archive-article-date">
-  	<time datetime="2023-04-01T03:33:03.633Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/01/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +497,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

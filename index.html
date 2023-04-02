@@ -152,6 +152,240 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-STL容器的简单总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/">STL容器的简单总结</a>
+    </h1>
+  
+
+        
+        <a href="/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2023-04-02T04:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>STL(Standard Template Library)：容器、迭代器、算法、分配器、适配器、仿函数</p>
+<table>
+    <tr>
+        <th></th> 
+          <th></th> 
+          <th colspan="7">顺序容器</th>   
+        <th colspan="2">关联容器</th>  
+        <th colspan="2">无序容器</th>                     
+   </tr>
+    <tr style="font-weight:bold">
+        <td>容器</td> 
+        <td>string</td> 
+        <td>array</td> 
+        <td>vector</td>
+        <td>deque</td> 
+        <td>stack</td> 
+        <td>queue</td> 
+        <td>list</td> 
+        <td>forward_list</td> 
+        <td>set/multiset</td>
+        <td>map/multimap</td> 
+        <td>unordered set</td> 
+        <td>unordered map</td> 
+   </tr>
+       <tr>
+        <td>特点</td> 
+        <td></td> 
+        <td>随机访问，连续存储，固定大小</td> 
+        <td>随机访问，连续存储，可向后扩充</td>
+        <td>分段连续存储，可向两端扩充</td> 
+          <td>先进后出</td> 
+        <td>先进先出</td>  
+        <td>双向链表</td> 
+        <td>单链表</td> 
+        <td>元素会在插入时自动被排序</td>
+        <td>元素会根据元素的key自动排序</td> 
+        <td></td> 
+        <td></td> 
+    </tr>
+    <tr>
+        <td>底层实现</td> 
+        <td></td> 
+        <td></td> 
+        <td>由array实现</td>
+        <td></td> 
+          <td colspan="2">由deque实现，因此可以看成是容器适配器</td> 
+        <td></td> 
+        <td>由list实现</td> 
+        <td colspan="2">由红黑树实现，它是一种平衡二叉树</td> 
+        <td colspan="2">由哈希表（拉链法）实现</td> 
+    </tr>
+    <tr>
+        <td>数据存取</td> 
+        <td>[];at()</td> 
+        <td></td> 
+        <td>[];<br>at();<br>front();<br>back()</td>
+        <td>[];<br>at();<br>front();<br>back()</td> 
+        <td>top()</td> 
+        <td>back();<br>front()</td> 
+        <td>back();<br>front()<br>不支持随机访问</td> 
+        <td></td> 
+        <td></td>
+        <td>map:[];<br>multimap:不能用[]</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>插入</td> 
+        <td>insert()</td> 
+        <td></td> 
+        <td>push_back();<br>insert()</td>
+        <td>push_back();<br>push_front();<br>insert()</td> 
+        <td>push()</td> 
+        <td>push()</td> 
+        <td>push_back();<br>push_front();<br>insert()</td> 
+        <td></td> 
+        <td>insert()</td>
+        <td>insert()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>删除</td> 
+        <td>erase()</td> 
+        <td></td> 
+        <td>pop_back();<br>erase();<br>clear()</td>
+        <td>pop_back();<br>pop_front();<br>erase();<br>clear()</td> 
+        <td>pop()</td> 
+        <td>pop()</td> 
+        <td>pop_back();<br>pop_front();<br>erase();<br>clear()</td> 
+        <td></td> 
+        <td>erase();<br>clear()</td>
+        <td>erase();<br>clear()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>构造函数</td> 
+        <td>无参；<br>有参；<br>拷贝；<br>(n,e) </td> 
+        <td></td> 
+        <td>无参；<br>[begin(),v.end())；<br>拷贝；<br>(n,e)</td>
+        <td>无参；<br>[begin(),v.end())；<br>拷贝；<br>(n,e)</td> 
+        <td>无参；<br>拷贝；</td> 
+        <td>无参；<br>拷贝；</td>
+        <td>无参；<br>[begin(),v.end())；<br>拷贝；<br>(n,e)</td>  
+        <td></td> 
+        <td>无参；<br>拷贝；</td>
+        <td>无参；<br>拷贝；</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>赋值</td> 
+        <td>=；assign</td> 
+        <td></td> 
+        <td>=；assign</td>
+        <td>=；assign</td> 
+        <td>=</td> 
+        <td>=</td> 
+        <td>=；assign</td> 
+        <td></td> 
+        <td>=</td>
+        <td>=</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>容量大小</td> 
+        <td>string</td> 
+        <td></td> 
+        <td>capacity();<br>size();<br>resize()</td>
+        <td>size();<br>resize()</td> 
+        <td></td> 
+        <td></td> 
+        <td>size();<br>resize()</td> 
+        <td></td> 
+        <td>size()</td>
+        <td>size()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+    <tr>
+        <td>其他</td> 
+        <td>+=;<br>find();<br>compare();<br>substr()</td> 
+        <td></td> 
+        <td>swap();<br>reverse()</td>
+        <td></td> 
+        <td></td> 
+        <td></td> 
+        <td>swap();<br>reverse();<br>sort()</td> 
+        <td></td> 
+        <td>swap();<br>find();<br>count()</td>
+        <td>swap();<br>find();<br>count()</td> 
+        <td></td> 
+        <td></td> 
+   </tr>
+</table>
+
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li>vector内存空间不足时，会申请一块新的内存空间（大小为原来的两倍），然后将原数据拷贝到新空间</li>
+<li>deque与vector区别：<ol>
+<li>vector对于头部的插入删除效率低，数据量越大，效率越低</li>
+<li>deque相对而言，对头部的插入删除速度会比vector快</li>
+<li>vector访问元素时的速度回避deque快，这和两者内部实现有关</li>
+</ol>
+</li>
+<li>对支持随机访问的迭代器的容器，都可以利用sort算法直接对其进行排序</li>
+<li>所有不支持随机访问迭代器的容器，不可以用标准算法。不支持随机访问迭代器的容器，内部会提供一些对应算法</li>
+<li>set和multiset区别：set不允许容器中有重复的元素，multiset允许容器中有重复的元素</li>
+<li>map和multimap区别：map不允许容器中有重复的key，multiset允许容器中有重复的key</li>
+<li>key和map都会根据元素或键值自动排序，其中自定义数据类型必须指定排序规则</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/04/02/STL%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
